@@ -1,8 +1,12 @@
-function run_tests(packageName)
+function run_tests(packageName, tolerance)
   % Run all tests in the tests sub-package of a package
 
   % Init Tester Object
-  testerObj = MatlabSpec.Tester;
+  if nargin == 2
+    testerObj = MatlabSpec.Tester(tolerance);
+  else
+    testerObj = MatlabSpec.Tester;
+  end
 
   % Verify package is on path
   packageTestPath = look_for_package(packageName);
