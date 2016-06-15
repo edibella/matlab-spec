@@ -16,7 +16,21 @@ classdef Tester < handle
       self.increment_test_count
       rmse = self.compute_rmse(matrixA, matrixB);
       testResult = self.test_result(rmse);
-      self.display_test_message(rmse, testResult, testDescription);
+      self.display_rmse_message(rmse, testResult, testDescription);
+    end
+
+    function test_struct(self, StructA, StructB, testDescription)
+      self.increment_test_count
+      if isequal(StructA, StructB)
+        self.increment_fail_count
+        testResult = ' - structs match';
+      else
+        self.increment_pass_count
+        testResult = ' - structs don''t match';
+        StructA
+        StructB
+      end
+      self.display_result_message(testResult, testDescription)
     end
 
     function testResult = test_result(self, rmse)
@@ -48,7 +62,12 @@ classdef Tester < handle
       rmse = rootMeanSquaredError;
     end
 
-    function display_test_message(self, rmse, testResult, testDescription)
+    function display_result_message(self, testResult, testDescription)
+      message = strcat(testDescription, testResult);
+      disp(message)
+    end
+
+    function display_rmse_message(self, rmse, testResult, testDescription)
       message = strcat(testDescription, testResult, ' | RMSE:', num2str(rmse));
       disp(message)
     end
