@@ -36,7 +36,7 @@ Test similar matrices FAILED | RMSE:5e-11
 
 That output is telling us that the Root mean square error between the two matrices is `5e-11` which is greater than the tolerance of the tester class.
 
-When testing structs a simple `isequal` is used and the structs are displayed if they are not the same. I'm sure this rudimentary implementation could be improved upon.
+When testing structs, rmse is calculated for each field. This is a rudimentary implementation and messaging could be improved upon.
 
 ### run_tests
 
