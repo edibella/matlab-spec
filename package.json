@@ -1,6 +1,6 @@
 {
   "name": "matlab-spec",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "Matlab package for running basic tests",
   "scripts": {
     "postinstall": "node scripts/rename.js"
