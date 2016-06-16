@@ -21,12 +21,12 @@ classdef Tester < handle
 
     function test_struct(self, StructA, StructB, testDescription)
       self.increment_test_count
-      if isequal(StructA, StructB)
+      if self.all_struct_fields_same(StructA, StructB)
         self.increment_fail_count
-        testResult = ' - structs match';
+        testResult = ' - Structs Match';
       else
         self.increment_pass_count
-        testResult = ' - structs don''t match';
+        testResult = ' - Structs Don''t Match';
         StructA
         StructB
       end
@@ -41,6 +41,18 @@ classdef Tester < handle
         testResult = ' PASSED';
         self.increment_pass_count
       end
+    end
+
+    function allTheSame = all_struct_fields_same(self, StructA, StructB)
+      fields = fieldnames(StructA);
+      for i = 1:numel(fields)
+        fieldName = fields{i};
+        valueA = StructA.(fieldName);
+        valueB = StructB.(fieldName);
+        rmse = self.compute_rmse(valueA, valueB);
+        results(i) = rmse <= self.tolerance;
+      end
+      allTheSame = all(results);
     end
 
     function increment_test_count(self)
