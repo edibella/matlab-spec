@@ -22,11 +22,11 @@ classdef Tester < handle
     function test_struct(self, StructA, StructB, testDescription)
       self.increment_test_count
       if self.all_struct_fields_same(StructA, StructB)
-        self.increment_fail_count
-        testResult = ' - Structs Match';
-      else
         self.increment_pass_count
-        testResult = ' - Structs Don''t Match';
+        testResult = ' - PASSED';
+      else
+        self.increment_fail_count
+        testResult = ' - FAILED Structs Don''t Match';
         StructA
         StructB
       end
