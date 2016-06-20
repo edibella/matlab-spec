@@ -50,6 +50,7 @@ function run_test_files(TestFiles, packageName, testerObj)
     % Build command to be eval'd
     testName = strcat(packageName, '.tests.', fileName);
     testCommand = sprintf('%s(testerObj);', testName);
+    fprintf('- Running Test %d - \r', iTestFile)
     eval(testCommand)
   end
 end
